@@ -459,8 +459,28 @@
                                 required></textarea>
                         </div>
                         <button type="submit" class="btn primary-btn">Send Message</button>
+                        <div id="statusMessage" class="message"></div>
                     </form>
                 </div>
+                <!-- <div class="contact-form">
+                    <form id="emailForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Send Message</button>
+                        <div id="statusMessage" class="message"></div>
+                    </form>
+                </div> -->
             </div>
         </div>
     </section>
@@ -482,6 +502,35 @@
             </div>
         </div>
     </footer>
+
+    <!-- Include EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("rMKW7D1edlKYumPmi"); // Replace with your EmailJS User ID
+        })();
+
+        const form = document.getElementById('emailForm');
+        const statusMessage = document.getElementById('statusMessage');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            statusMessage.style.display = 'none'; // hide previous messages
+
+            emailjs.sendForm('service_c6gwg8j', 'template_ueo892m', this)
+                .then(() => {
+                    statusMessage.textContent = "Email sent successfully!";
+                    statusMessage.className = "message success";
+                    statusMessage.style.display = "block";
+                    form.reset();
+                }, (err) => {
+                    statusMessage.textContent = "Failed to send email. Please try again.";
+                    statusMessage.className = "message error";
+                    statusMessage.style.display = "block";
+                    console.error("EmailJS Error:", err);
+                });
+        });
+    </script>
 
     <!-- Back to Top Button -->
     <button id="back-to-top" aria-label="Back to Top">

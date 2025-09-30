@@ -539,12 +539,18 @@ header .container {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.hero-image {
-    position: relative;
+
+
+@media screen and (min-width: 768px) {
+    .hero-image {
+        position: relative;
+        bottom: 70px;
+    }
 }
 
+
 .hero-image img {
-    border-radius: 50%;
+    border-radius: 20px;
     border: 8px solid;
     box-shadow: var(--shadow-light);
     width: 100%;
